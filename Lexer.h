@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
+#include "Errors.h"
 
     using namespace std;
 
 vector<string> lexer(string line) {
+    line += " ";
     vector<string> rtn;
     for(int i = 0; i < line.length(); i++) {
         if(line[i] == 32) continue;
@@ -35,12 +37,11 @@ vector<string> lexer(string line) {
                 quotes = 39;
                 rtn.insert(rtn.end(), "\'");
             }
-            char ee = line[i];
-            char* e = &ee;
             i++;
             while(line[i] != quotes) {
                 quotesLine += line[i];
                 i++;
+                if(i == line.length()) oneArgErr("openedQuot");
             }
             if(quotesLine != "") rtn.insert(rtn.end(), quotesLine);
             if(quotes == 34) rtn.insert(rtn.end(), "\"");
