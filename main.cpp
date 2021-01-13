@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "Lexer.h"
+//#include "helpFuncs.h"
+#include "Parser.h"
 
     using namespace std;
 
@@ -9,10 +11,6 @@ int main() {
     fstream file("file");
     getline(file, s);
     vector<string> ss = lexer(s);
-    
-    for(int i = 0; i < ss.size(); i++) {
-        cout << ss[i] << endl;
-    }
-    
+    parse(ss);
     return 0;
 }
